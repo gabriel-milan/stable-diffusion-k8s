@@ -46,9 +46,9 @@ spec:
             - -c
             - >-
                 wget -nc {{ .Values.models.sd14 }} -O /models/model.ckpt || [ $? -eq 1 ];
-                wget -nc {{ .Values.models.gfpGan13 }} -P /models || [ $? -eq 1 ];
-                wget -nc {{ .Values.models.realEsrGanx4p10 }} -P /models || [ $? -eq 1 ];
-                wget -nc {{ .Values.models.realEsrGanx4Animep02 }} -P /models || [ $? -eq 1 ]
+                wget -nc {{ .Values.models.gfpGan13 }} -O /models/GFPGANv1.3.pth || [ $? -eq 1 ];
+                wget -nc {{ .Values.models.realEsrGanx4p10 }} -O /models/RealESRGAN_x4plus.pth || [ $? -eq 1 ];
+                wget -nc {{ .Values.models.realEsrGanx4Animep02 }} -O /models/RealESRGAN_x4plus_anime_6B.pth || [ $? -eq 1 ]
           volumeMounts:
             - mountPath: /models
               name: {{ include "stable-diffusion.fullname" . }}-model-store

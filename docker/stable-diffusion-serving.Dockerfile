@@ -38,10 +38,8 @@ CMD \
   for path in "${GFPGAN_PATH}" "${RealESRGAN_PATH}" "${RealESRGAN_ANIME_PATH}"; do \
   name=$(basename "${path}"); \
   base=$(dirname "${path}"); \
-  test -f "/models/${name}" && mkdir -p "${base}" && ln -sf "/models/${name}" "${path}" && echo "Mounted ${name}";\
-  done;\
-  # force facexlib cache
-  mkdir -p /cache/weights/ && rm -rf /stable-diffusion/src/facexlib/facexlib/weights && \
-  ln -sf  /cache/weights/ /stable-diffusion/src/facexlib/facexlib/ && \
+  test -f "/models/${name}" && mkdir -p "${base}" && ln -sf "/models/${name}" "${path}" && echo "Mounted ${name}"; \
+  done; \
+  mkdir -p /cache/weights/ && \
   # run, -u to not buffer stdout / stderr
   python3 -u scripts/webui.py --outdir /output --ckpt /models/model.ckpt --save-metadata ${CLI_ARGS}
